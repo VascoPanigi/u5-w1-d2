@@ -2,6 +2,7 @@ package vascopanigi.u5_w1_d2;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import vascopanigi.u5_w1_d2.entities.Drink;
 import vascopanigi.u5_w1_d2.entities.Menu;
 import vascopanigi.u5_w1_d2.entities.Pizza;
@@ -11,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
+@PropertySource("application.properties")
 public class Config {
 
     @Bean(name = "cheese")
