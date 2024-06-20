@@ -1,12 +1,10 @@
 package vascopanigi.u5_w1_d2;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import vascopanigi.u5_w1_d2.entities.Drink;
-import vascopanigi.u5_w1_d2.entities.Menu;
-import vascopanigi.u5_w1_d2.entities.Pizza;
-import vascopanigi.u5_w1_d2.entities.Topping;
+import vascopanigi.u5_w1_d2.entities.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,17 +40,17 @@ public class Config {
 
     @Bean(name = "hawaiian_pizza")
     public Pizza getHawaiianPizza() {
-        return new Pizza("hawaiian", Arrays.asList(getPineapple(), getCheese()), 10.99, 1500);
+        return new Pizza("hawaiian", Arrays.asList(getPineapple(), getCheese()));
     }
 
     @Bean(name = "pepperoni_pizza")
     public Pizza getPepperoniPizza() {
-        return new Pizza("pepperoni", Arrays.asList(getPepperoni(), getCheese()), 12.99, 2000);
+        return new Pizza("pepperoni", Arrays.asList(getPepperoni(), getCheese()));
     }
 
-    @Bean(name = "hawaiian")
+    @Bean(name = "classic_pizza")
     public Pizza getClassicPizza() {
-        return new Pizza("hawaiian", Arrays.asList(getCheese(), getTomato()), 8.99, 1500);
+        return new Pizza("classic", Arrays.asList(getCheese(), getTomato()));
     }
 
     @Bean(name = "water")
@@ -65,7 +63,17 @@ public class Config {
         return new Drink("cola", 3.50, 300);
     }
 
-    @Bean
+    @Bean(name = "table1")
+    public Table getTable1(@Value("${cover.price}") double coverPrice) {
+        return new Table(1, 10, coverPrice, false);
+    }
+
+    @Bean(name = "table2")
+    Table getTable2(@Value("${cover.price}") double coverPrice) {
+        return new Table(2, 5, coverPrice, false);
+    }
+
+    @Bean(name = "menu")
     public Menu menu() {
         List<Pizza> pizzas = Arrays.asList(getClassicPizza(), getHawaiianPizza(), getPepperoniPizza());
         List<Topping> toppings = Arrays.asList(getPineapple(), getPepperoni(), getHam(), getCheese());

@@ -1,14 +1,15 @@
 package vascopanigi.u5_w1_d2.entities;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
-@AllArgsConstructor
-public class Topping {
-    private String name;
-    private double price;
-    private int calories;
+@ToString
+
+public class Topping extends Product {
+    public Topping(String name, double price, int calories) {
+        super(calories, price, name);
+    }
 }
